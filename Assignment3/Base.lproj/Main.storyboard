@@ -16,43 +16,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firewatchDay" translatesAutoresizingMaskIntoConstraints="NO" id="dC9-tl-1kx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firewatchDay" translatesAutoresizingMaskIntoConstraints="NO" id="dC9-tl-1kx" userLabel="firwatchDay">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LiveClock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJK-U3-VzM">
-                                <rect key="frame" x="159" y="180" width="74" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firewatchNight" translatesAutoresizingMaskIntoConstraints="NO" id="Xet-XD-ihU">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gjA-a3-h3n" userLabel="Top">
+                                <rect key="frame" x="0.0" y="118.99999999999999" width="393" height="20.333333333333329"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LiveClock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJK-U3-VzM">
+                                        <rect key="frame" x="159.66666666666666" y="0.0" width="74" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bSl-3O-5l6" userLabel="BottomStack">
+                                <rect key="frame" x="289" y="797.66666666666663" width="104" height="20.333333333333371"/>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ns6-CV-wnB">
-                                <rect key="frame" x="142" y="733" width="110" height="35"/>
+                                <rect key="frame" x="142" y="622" width="109.33333333333333" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Start Timer"/>
+                                <connections>
+                                    <action selector="startTimerPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkE-JC-YWW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TimeRemaing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ho2-3k-Whh">
-                                <rect key="frame" x="145" y="704" width="104" height="21"/>
+                                <rect key="frame" x="144" y="724" width="104" height="20.333333333333329"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.90830403569999996" green="0.41339650750000001" blue="0.21949288249999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3Hp-wp-7Eo">
-                                <rect key="frame" x="8" y="588" width="393" height="108"/>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hp-wp-7Eo">
+                                <rect key="frame" x="36" y="138" width="320" height="210"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="setTimer:" destination="BYZ-38-t0r" eventType="valueChanged" id="xDK-rE-uRx"/>
+                                </connections>
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gjA-a3-h3n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4tb-s9-U1F"/>
                             <constraint firstAttribute="bottom" secondItem="dC9-tl-1kx" secondAttribute="bottom" id="6rj-SK-Hmv"/>
+                            <constraint firstItem="Xet-XD-ihU" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="9SV-B7-N3B"/>
+                            <constraint firstItem="gjA-a3-h3n" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="XpE-YA-Cba"/>
+                            <constraint firstItem="Xet-XD-ihU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZYZ-ff-MaZ"/>
                             <constraint firstItem="dC9-tl-1kx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fvT-E9-onO"/>
+                            <constraint firstAttribute="bottom" secondItem="Xet-XD-ihU" secondAttribute="bottom" id="hm4-LD-xyK"/>
                             <constraint firstItem="dC9-tl-1kx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="kOm-pA-ccv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gjA-a3-h3n" secondAttribute="trailing" id="saC-Sc-zyG"/>
                             <constraint firstItem="dC9-tl-1kx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tH7-Y8-sdP"/>
+                            <constraint firstItem="Xet-XD-ihU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uKG-rA-82X"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bSl-3O-5l6" secondAttribute="bottom" id="xQs-36-iBX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bSl-3O-5l6" secondAttribute="trailing" id="zxn-PG-d1d"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="dC9-tl-1kx" id="iof-OL-Gn2"/>
+                        <outlet property="clockLabel" destination="VJK-U3-VzM" id="sAg-lI-YaE"/>
+                        <outlet property="datePicker" destination="3Hp-wp-7Eo" id="E2s-1a-mWM"/>
+                        <outlet property="firewatchNight" destination="Xet-XD-ihU" id="9oG-TS-zwW"/>
+                        <outlet property="startTimerButton" destination="Ns6-CV-wnB" id="40M-Lk-4h4"/>
+                        <outlet property="timeRemainingLabel" destination="Ho2-3k-Whh" id="kBy-vZ-yz5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,6 +94,7 @@
     </scenes>
     <resources>
         <image name="firewatchDay" width="682.66668701171875" height="384"/>
+        <image name="firewatchNight" width="1280" height="720"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
