@@ -29,7 +29,15 @@ class ViewController: UIViewController {
     
     var dateComponentFormatter = DateComponentsFormatter()
     
+    var systemTimer = Timer()
+    
     var tick :Int = 0
+    
+    var tock:Int = 0
+    
+    var timeRemaining:Int = 0
+    
+    var timerActive : Bool = false
     
 
     
@@ -42,7 +50,10 @@ class ViewController: UIViewController {
         dateComponentFormatter.allowedUnits = [.hour, .minute, .second]
         dateComponentFormatter.zeroFormattingBehavior = .pad
         
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(tickTock), userInfo: nil, repeats: true)
+        var systemTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(tickTock), userInfo: nil, repeats: true)
+        
+        //hideTimer on start
+        timeRemainingLabel.isHidden =  true;
         
         //this should probably run once a second right?
         //setTime()
@@ -53,16 +64,22 @@ class ViewController: UIViewController {
     @objc func tickTock() {
         setTime()
         tick += 1
+        tock += 1
         
         //is timer running?
+        if timerActive == true {
+            runTimer()
+            
+            // debug print (timeRemaining)
+            if timeRemaining < 0 {
+                stopTimer()
+            }
+        }
         
-        timeRemainingLabel.text = dateComponentFormatter.string(from: datePicker.countDownDuration - Double(tick))
-        
-
-        
-        //update background every hour
-        if tick == 360 {
+        //update background every running hour
+        if tock == 360 {
             blendBackground()
+            tock = 0
         }
         
     }
@@ -78,7 +95,6 @@ class ViewController: UIViewController {
     
         // Daylight is fireWatchNight.alpha @ 0
 
-    
         if intHrs! >= 22 && intHrs! < 4 {
             firewatchNight.alpha = 1
         }
@@ -95,16 +111,16 @@ class ViewController: UIViewController {
             firewatchNight.alpha = 0
         }
         else if intHrs! >= 16 && intHrs! < 18 {
-            firewatchNight.alpha = 0.2
-        }
-        else if intHrs! >= 18 && intHrs! < 19 {
             firewatchNight.alpha = 0.4
         }
-        else if intHrs! >= 19 && intHrs! < 20 {
+        else if intHrs! >= 18 && intHrs! < 19 {
             firewatchNight.alpha = 0.6
         }
-        else if intHrs! >= 20 && intHrs! < 22 {
+        else if intHrs! >= 19 && intHrs! < 20 {
             firewatchNight.alpha = 0.8
+        }
+        else if intHrs! >= 20 && intHrs! < 22 {
+            firewatchNight.alpha = 1.0
         }
     
     }
@@ -118,10 +134,37 @@ class ViewController: UIViewController {
     
     @IBAction func startTimerPushed(_ sender: Any) {
         
+        if !timerActive {
+            timerActive = true;
+            tick = 0
+            startTimerButton.setTitle("Stop Timer", for: .normal)
+        }
+        else  {
+            timerActive = false;
+            //timeRemainingLabel.
+        }
+        
+        
     }
     
     func runTimer() {
+        // Time Remaining Int
+        timeRemaining = Int(datePicker.countDownDuration - Double(tick))
+        // Fromatted Time for Label
+        timeRemainingLabel.text = dateComponentFormatter.string(from: datePicker.countDownDuration - Double(tick))
         
+        if (tick == 1) {
+            timeRemainingLabel.isHidden = false
+        }
+        
+    }
+    
+    func stopTimer() {
+        timerActive = false
+        timeRemainingLabel.isHidden = true
+        systemTimer.invalidate()
+        startTimerButton.setTitle("Start Timer", for: .normal)
+
     }
     
 }
