@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         dateComponentFormatter.allowedUnits = [.hour, .minute, .second]
         dateComponentFormatter.zeroFormattingBehavior = .pad
         
-        var systemTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(tickTock), userInfo: nil, repeats: true)
+        systemTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(tickTock), userInfo: nil, repeats: true)
         
         //hideTimer on start
         timeRemainingLabel.isHidden =  true;
