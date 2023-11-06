@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var firewatchNight: UIImageView!
     
+    @IBOutlet weak var timerTitle: UILabel!
+    
     //Full Date
     var dateFormatter = DateFormatter()
     
@@ -54,6 +56,7 @@ class ViewController: UIViewController {
         
         //hideTimer on start
         timeRemainingLabel.isHidden =  true;
+        timerTitle.isHidden = true
         
         //this should probably run once a second right?
         //setTime()
@@ -140,8 +143,7 @@ class ViewController: UIViewController {
             startTimerButton.setTitle("Stop Timer", for: .normal)
         }
         else  {
-            timerActive = false;
-            //timeRemainingLabel.
+            stopTimer()
         }
         
         
@@ -155,6 +157,7 @@ class ViewController: UIViewController {
         
         if (tick == 1) {
             timeRemainingLabel.isHidden = false
+            timerTitle.isHidden = false
         }
         
     }
@@ -162,6 +165,7 @@ class ViewController: UIViewController {
     func stopTimer() {
         timerActive = false
         timeRemainingLabel.isHidden = true
+        timerTitle.isHidden  = true
         systemTimer.invalidate()
         startTimerButton.setTitle("Start Timer", for: .normal)
 
