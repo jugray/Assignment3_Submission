@@ -97,7 +97,21 @@ class ViewController: UIViewController {
         let intHrs = Int(hourString)
     
         // Daylight is fireWatchNight.alpha @ 0
-
+        
+        
+        if firewatchNight.alpha <= 0.7 {
+            clockLabel.textColor = .systemCyan
+            timerTitle.textColor = .systemCyan
+            timeRemainingLabel.textColor = .systemCyan
+            startTimerButton.tintColor = .systemCyan
+        }
+        else{
+            clockLabel.textColor = .orange
+            timerTitle.textColor = .orange
+            timeRemainingLabel.textColor = .orange
+            startTimerButton.tintColor = .orange
+        }
+        
         if intHrs! >= 22 && intHrs! < 4 {
             firewatchNight.alpha = 1
         }
